@@ -1,4 +1,4 @@
-package com.github.atsuya046.converter.wrappedmodel
+package com.github.atsuya046.converter
 
 import okhttp3.ResponseBody
 import okhttp3.mockwebserver.MockResponse
@@ -12,7 +12,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 class WrappedModelConverterFactoryTest {
-    private val factory = WrappedModelConverterFactory().apply {
+    private val factory = WrappedModelConverterFactory.create {
         addConverter<UserId> { it.value }
         addConverter<Animal> { it.name.toLowerCase() }
     }

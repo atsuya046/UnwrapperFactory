@@ -1,10 +1,10 @@
-package com.github.atsuya046.converter.wrappedmodel
+package com.github.atsuya046.converter
 
 import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.reflect.Type
 
-class WrappedModelConverterFactory : Converter.Factory() {
+class WrappedModelConverterFactory private constructor(): Converter.Factory() {
 
     private val factories: MutableList<Converter.Factory> = mutableListOf()
 
@@ -34,5 +34,11 @@ class WrappedModelConverterFactory : Converter.Factory() {
 
     inline fun <reified T> addConverter(crossinline converter: (T) -> String) {
         addConverter(Converter<T, String> { converter(it) })
+    }
+
+    companion object {
+        fun create(appendix: WrappedModelConverterFactory.() -> Unit): WrappedModelConverterFactory {
+            return WrappedModelConverterFactory().apply(appendix)
+        }
     }
 }
