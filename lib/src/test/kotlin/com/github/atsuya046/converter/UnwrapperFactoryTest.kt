@@ -11,10 +11,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-class WrappedModelConverterFactoryTest {
-    private val factory = WrappedModelConverterFactory.create {
-        addConverter<UserId> { it.value }
-        addConverter<Animal> { it.name.toLowerCase() }
+class UnwrapperFactoryTest {
+    private val factory = UnwrapperFactory.create {
+        addUnwrapper<UserId> { it.value }
+        addUnwrapper<Animal> { it.name.toLowerCase() }
     }
 
     private val server = MockWebServer()

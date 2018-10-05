@@ -4,7 +4,7 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.reflect.Type
 
-class WrappedModelConverterFactory private constructor(): Converter.Factory() {
+class UnwrapperFactory private constructor(): Converter.Factory() {
 
     private val factories: MutableList<Converter.Factory> = mutableListOf()
 
@@ -16,7 +16,7 @@ class WrappedModelConverterFactory private constructor(): Converter.Factory() {
         return null
     }
 
-    fun <T> addConverter(clazz: Class<T>, converter: Converter<T, String>) {
+    fun <T> addUnwrapper(clazz: Class<T>, converter: Converter<T, String>) {
         val factory = object : Converter.Factory() {
             override fun stringConverter(type: Type, annotations: Array<Annotation>, retrofit: Retrofit): Converter<*, String>? {
                 return if (clazz == type) {
@@ -30,15 +30,15 @@ class WrappedModelConverterFactory private constructor(): Converter.Factory() {
     }
 
 
-    inline fun <reified T> addConverter(converter: Converter<T, String>) = addConverter(T::class.java, converter)
+    inline fun <reified T> addUnwrapper(converter: Converter<T, String>) = addUnwrapper(T::class.java, converter)
 
-    inline fun <reified T> addConverter(crossinline converter: (T) -> String) {
-        addConverter(Converter<T, String> { converter(it) })
+    inline fun <reified T> addUnwrapper(crossinline converter: (T) -> String) {
+        addUnwrapper(Converter<T, String> { converter(it) })
     }
 
     companion object {
-        fun create(appendix: WrappedModelConverterFactory.() -> Unit): WrappedModelConverterFactory {
-            return WrappedModelConverterFactory().apply(appendix)
+        fun create(appendix: UnwrapperFactory.() -> Unit): UnwrapperFactory {
+            return UnwrapperFactory().apply(appendix)
         }
     }
 }
