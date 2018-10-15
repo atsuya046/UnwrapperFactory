@@ -1,7 +1,7 @@
 # UnwrapperFactory
 Retrofit Converter Factory for wrapped model classes
 
-# Motivation
+## Motivation
 
 If you wrap models with ValueObject, you will have to unwrap it and pass it to retrofit services.
 
@@ -24,7 +24,7 @@ fun ServiceA.getDetail(userId: UserId) = this.getDetail(id.value) // unwrapping 
 ...
 ```
 
-So this library will resolve that repetition.
+This library will resolve that repetition.
 
 # Usage
 
