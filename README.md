@@ -3,7 +3,7 @@ Retrofit Converter Factory for wrapped model classes
 
 ## Motivation
 
-If you wrap models with ValueObject, you will have to unwrap it and pass it to retrofit services.
+If you use wraped models with ValueObject, you will have to unwrap it when pass it to retrofit services.
 
 Increasing API access with retrofit, you have to write many unwrapping codes, like below.
 
@@ -20,8 +20,9 @@ interface Service {
 }
 
 fun ServiceA.get(userId: UserId) = this.get(id.value)
-fun ServiceA.getDetail(userId: UserId) = this.getDetail(id.value) // unwrapping again :(
+fun ServiceA.getDetail(userId: UserId) = this.getDetail(id.value)
 ...
+// makes me tired :(
 ```
 
 This library will resolve that repetition.
