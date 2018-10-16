@@ -29,6 +29,21 @@ This library will resolve that repetition.
 
 # Usage
 
+```build.gradle
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+```app/build.gradle
+dependencies {
+    implementation 'com.github.atsuya046:UnwrapperFactory:0.1'
+}
+```
+
 ```kotlin
 // Create UnwrapperFactory, and add some unwrapper.
 val factory = UnwrapperFactory.create {
