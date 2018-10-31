@@ -56,7 +56,7 @@ val retrofit = Retrofit.Builder()
    ...
    .build()
 
-// You will not have to write more unwrapping code!! :tada:
+// You don't have to write unwrapping code!! :tada:
 val service = retrofit.create(Service::class.java)
 val userId = UserId("aaaa")
 service.get(userId) // request to /user/aaaa
