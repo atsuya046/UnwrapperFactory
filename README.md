@@ -19,8 +19,8 @@ interface Service {
     ...
 }
 
-fun ServiceA.get(userId: UserId) = this.get(id.value)
-fun ServiceA.getDetail(userId: UserId) = this.getDetail(id.value)
+fun Service.get(userId: UserId) = this.get(id.value)
+fun Service.getDetail(userId: UserId) = this.getDetail(id.value)
 ...
 // makes me tired :(
 ```
